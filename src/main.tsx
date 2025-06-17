@@ -11,15 +11,15 @@ import { JazzAccount } from "./schema.ts";
 export const APPLICATION_NAME = "jazz-react-tailwind-starter";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<JazzProvider
-			sync={{
-				peer: `wss://cloud.jazz.tools/?key=${apiKey}`,
-			}}
-			AccountSchema={JazzAccount}
-		>
-			<App />
-			<JazzInspector />
-		</JazzProvider>
-	</StrictMode>,
+  <StrictMode>
+    <JazzProvider
+      sync={{
+        peer: `wss://cloud.jazz.tools/?key=${apiKey}`,
+      }}
+      AccountSchema={JazzAccount}
+    >
+      <App />
+      <JazzInspector />
+    </JazzProvider>
+  </StrictMode>
 );
