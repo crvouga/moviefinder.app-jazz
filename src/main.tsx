@@ -19,8 +19,7 @@ createRoot(document.getElementById("root")!).render(
       AccountSchema={JazzAccount}
     >
       <App />
-
       <JazzInspector />
     </JazzProvider>
-  </StrictMode>,
+  </StrictMode>
 );

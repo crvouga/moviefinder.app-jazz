@@ -10,7 +10,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "format-and-lint": "biome check .",
-    "format-and-lint:fix": "biome check . --write"
+    "format-and-lint:fix": "biome check . --write",
+    "tc": "bun x tsc --noEmit --watch"
   },
   "dependencies": {
     "jazz-inspector": "^0.14.25",
@@ -26,6 +27,7 @@
     "@types/react": "~18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.5.1",
+    "bun-types": "^1.2.16",
     "globals": "^15.11.0",
     "is-ci": "^3.0.1",
     "postcss": "^8.4.27",
