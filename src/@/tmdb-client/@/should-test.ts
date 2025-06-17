@@ -1,1 +1,1 @@
-export const SHOULD_TEST = false
+export const SHOULD_TEST = false;

@@ -5,15 +5,15 @@
  * @returns A deterministic string
  */
 export const toDeterministicHash = <T>(obj: T): string => {
-  return JSON.stringify(obj, (_, value) => {
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      return Object.keys(value)
-        .sort()
-        .reduce((sorted: Record<string, unknown>, key) => {
-          sorted[key] = value[key]
-          return sorted
-        }, {})
-    }
-    return value
-  })
-}
+	return JSON.stringify(obj, (_, value) => {
+		if (value && typeof value === "object" && !Array.isArray(value)) {
+			return Object.keys(value)
+				.sort()
+				.reduce((sorted: Record<string, unknown>, key) => {
+					sorted[key] = value[key];
+					return sorted;
+				}, {});
+		}
+		return value;
+	});
+};

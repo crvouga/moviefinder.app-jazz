@@ -1,4 +1,4 @@
-import { TimeSpan } from './time-span'
+import { TimeSpan } from "./time-span";
 
 /**
  * Creates a throttled version of a function that only executes at most once within a specified time span.
@@ -22,12 +22,12 @@ import { TimeSpan } from './time-span'
  * ```
  */
 export const throttle = <T>(timeSpan: TimeSpan, fn: (...args: T[]) => void) => {
-  let lastCall = 0
-  return (...args: T[]) => {
-    const now = Date.now()
-    if (now - lastCall > TimeSpan.toMilliseconds(timeSpan)) {
-      lastCall = now
-      fn(...args)
-    }
-  }
-}
+	let lastCall = 0;
+	return (...args: T[]) => {
+		const now = Date.now();
+		if (now - lastCall > TimeSpan.toMilliseconds(timeSpan)) {
+			lastCall = now;
+			fn(...args);
+		}
+	};
+};

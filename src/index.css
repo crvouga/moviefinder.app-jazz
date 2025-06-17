@@ -1,36 +1,34 @@
 @import "tailwindcss";
 
-
 @layer base {
-
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-neutral-600, currentColor);
-    }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-neutral-600, currentColor);
+	}
 }
 
 * {
-    touch-action: manipulation !important;
+	touch-action: manipulation !important;
 }
 
 /* Customize scrollbar appearance */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+	width: 8px;
+	height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+	background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
+	background: #333;
+	border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #444;
+	background: #444;
 }

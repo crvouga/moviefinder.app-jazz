@@ -1,4 +1,4 @@
-import { TimeSpan } from './time-span'
+import { TimeSpan } from "./time-span";
 
 /**
  * Creates a throttled version of a function that throttles based on a key.
@@ -26,20 +26,20 @@ import { TimeSpan } from './time-span'
  * ```
  */
 export const throttleByKey = <TKey, TArgs extends any[]>(
-  timeSpan: TimeSpan,
-  getKey: (...args: TArgs) => TKey,
-  fn: (...args: TArgs) => void
+	timeSpan: TimeSpan,
+	getKey: (...args: TArgs) => TKey,
+	fn: (...args: TArgs) => void,
 ) => {
-  const lastCalls = new Map<TKey, number>()
+	const lastCalls = new Map<TKey, number>();
 
-  return (...args: TArgs) => {
-    const key = getKey(...args)
-    const now = Date.now()
-    const lastCall = lastCalls.get(key) ?? 0
+	return (...args: TArgs) => {
+		const key = getKey(...args);
+		const now = Date.now();
+		const lastCall = lastCalls.get(key) ?? 0;
 
-    if (now - lastCall > TimeSpan.toMilliseconds(timeSpan)) {
-      lastCalls.set(key, now)
-      fn(...args)
-    }
-  }
-}
+		if (now - lastCall > TimeSpan.toMilliseconds(timeSpan)) {
+			lastCalls.set(key, now);
+			fn(...args);
+		}
+	};
+};

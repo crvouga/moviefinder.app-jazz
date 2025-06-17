@@ -1,7 +1,7 @@
-import { Codec } from './codec'
-import { IKvDb } from './kv-db/interface'
-import { unwrapOr } from './result'
-import { TimeSpan } from './time-span'
+import { Codec } from "./codec";
+import type { IKvDb } from "./kv-db/interface";
+import { unwrapOr } from "./result";
+import { TimeSpan } from "./time-span";
 
 /**
  * Creates a throttled version of a function that throttles based on a key.
@@ -29,20 +29,22 @@ import { TimeSpan } from './time-span'
  * ```
  */
 export const throttleByKeyDurable = <TArgs extends any[]>(config: {
-  kvDb: IKvDb
-  timeSpan: TimeSpan
-  getKey: (...args: TArgs) => string
-  fn: (...args: TArgs) => void
+	kvDb: IKvDb;
+	timeSpan: TimeSpan;
+	getKey: (...args: TArgs) => string;
+	fn: (...args: TArgs) => void;
 }) => {
-  return async (...args: TArgs) => {
-    const key = config.getKey(...args)
-    const now = Date.now()
-    const lastCall =
-      unwrapOr(await config.kvDb.get(Codec.integer, [String(key)]), () => [0])[0] ?? 0
+	return async (...args: TArgs) => {
+		const key = config.getKey(...args);
+		const now = Date.now();
+		const lastCall =
+			unwrapOr(await config.kvDb.get(Codec.integer, [String(key)]), () => [
+				0,
+			])[0] ?? 0;
 
-    if (now - lastCall > TimeSpan.toMilliseconds(config.timeSpan)) {
-      await config.kvDb.set(Codec.integer, [String(key), now])
-      config.fn(...args)
-    }
-  }
-}
+		if (now - lastCall > TimeSpan.toMilliseconds(config.timeSpan)) {
+			await config.kvDb.set(Codec.integer, [String(key), now]);
+			config.fn(...args);
+		}
+	};
+};

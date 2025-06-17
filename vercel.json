@@ -1,8 +1,8 @@
 {
-  "build": {
-    "env": {
-      "APP_NAME": "moviefinder-app"
-    }
-  },
-  "ignoreCommand": "node ../../ignore-vercel-build.js"
+	"build": {
+		"env": {
+			"APP_NAME": "moviefinder-app"
+		}
+	},
+	"ignoreCommand": "node ../../ignore-vercel-build.js"
 }

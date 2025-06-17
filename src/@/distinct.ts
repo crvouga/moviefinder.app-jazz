@@ -11,5 +11,7 @@
  * ```
  */
 export const distinct = <T>(a: T[], fn: (a: T) => string): T[] => {
-  return a.filter((a, index, self) => self.findIndex((t) => fn(t) === fn(a)) === index)
-}
+	return a.filter(
+		(a, index, self) => self.findIndex((t) => fn(t) === fn(a)) === index,
+	);
+};

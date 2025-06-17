@@ -12,6 +12,10 @@
  * // Returns: [{ id: 2, name: 'Bob' }]
  * ```
  */
-export const intersectionWith = <T>(a: T[], b: T[], fn: (a: T, b: T) => boolean): T[] => {
-  return a.filter((a) => b.some((b) => fn(a, b)))
-}
+export const intersectionWith = <T>(
+	a: T[],
+	b: T[],
+	fn: (a: T, b: T) => boolean,
+): T[] => {
+	return a.filter((a) => b.some((b) => fn(a, b)));
+};
