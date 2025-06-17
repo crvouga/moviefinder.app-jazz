@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useAccount, useIsAuthenticated } from "jazz-react";
+import { AuthButton } from "./AuthButton.tsx";
+import { Form } from "./Form.tsx";
+import { Logo } from "./Logo.tsx";
+import { JazzAccount, getUserAge } from "./schema.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { me } = useAccount(JazzAccount, {
+    resolve: { profile: true, root: true },
+  });
+
+  const isAuthenticated = useIsAuthenticated();
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+      <header>
+        <nav className="max-w-2xl mx-auto flex justify-between items-center p-3">
+          {isAuthenticated ? (
+            <span>You're logged in.</span>
+          ) : (
+            <span>Authenticate to share the data with another device.</span>
+          )}
+          <AuthButton />
+        </nav>
+      </header>
+      <main className="max-w-2xl mx-auto px-3 mt-16 flex flex-col gap-8">
+        <Logo />
+
+        <div className="text-center">
+          <h1>
+            Welcome{me?.profile.firstName ? <>, {me?.profile.firstName}</> : ""}
+            !
+          </h1>
+          {!!me?.root && (
+            <p>As of today, you are {getUserAge(me.root)} years old.</p>
+          )}
+        </div>
+
+        <Form />
+
+        <p className="text-center">
+          Edit the form above,{" "}
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="font-semibold underline"
+          >
+            refresh
+          </button>{" "}
+          this page, and see your changes persist.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+        <p className="text-center">
+          Edit <code className="font-semibold">schema.ts</code> to add more
+          fields.
+        </p>
+
+        <p className="text-center my-16">
+          Go to{" "}
+          <a className="font-semibold underline" href="https://jazz.tools/docs">
+            jazz.tools/docs
+          </a>{" "}
+          for our docs.
+        </p>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
